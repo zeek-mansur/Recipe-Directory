@@ -1,15 +1,31 @@
 
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
+
+// styles
 import './Create.css'
 
 export default function Create() {
   const [title, setTitle] = useState('')
   const [method, setMethod] = useState('')
   const [cookingTime, setCookingTime] = useState('')
+  const [newIngredient, setNewIngredient] = useState('')
+  const[ingedrients, setIngredients] = useState([])
+  const ingredientInput = useRef(null)
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(title, method, cookingTime);
+    console.log(title, method, cookingTime, ingedrients);
+  }
+
+  const handleAdd = (e) => {
+    e.preventDefault()
+    const ing = newIngredient.trim()
+
+    if (ing && !ingedrients.includes(ing)) {
+      setIngredients(prevIngredients => [...prevIngredients, ing])
+    }
+      setNewIngredient('')
+      ingredientInput.current.focus()
   }
 
   return (
@@ -27,11 +43,22 @@ export default function Create() {
           required 
           />
           
-            {/* ingredients go here */}
+           <label>
+            <span>Recipe ingredients:</span>
+            <div className='ingredients'>
+              <input type='text'
+              onChange={(e) => setNewIngredient(e.target.value)}
+              value = {newIngredient}
+              ref ={ingredientInput} 
+              />
+              <button onClick={handleAdd} className='btn'>add</button>
+            </div>
+           </label>
+           <p>Current Ingredients: {ingedrients.map(i => <em key={i}>{i},</em>)}</p>
 
         </label>
         <label>
-          <span>Recipe method</span>
+          <span>Recipe method:</span>
           <textarea 
           onChange={(e) => setMethod(e.target.value)}
           value = {method}
@@ -39,7 +66,7 @@ export default function Create() {
           />
 
           <label>
-            <span>Cooking time (Minutes)</span>
+            <span>Cooking time (Minutes):</span>
             <input type='number'
             onChange={(e) => setCookingTime(e.target.value)}
             value={cookingTime}
@@ -52,6 +79,7 @@ export default function Create() {
 
       </form>
       
+
     </div>
   )
 }
