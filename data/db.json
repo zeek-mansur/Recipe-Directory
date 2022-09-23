@@ -38,7 +38,6 @@
       "cookingTime": "35 minutes"
     },
     {
-      
       "title": "Meat Pie",
       "ingedrients": [
         "meat",
@@ -48,8 +47,7 @@
       "method": "Cook for 20 minutes ",
       "cookingTime": "30 minutes",
       "id": "2w0gH_5"
-     
     }
-  
+    
   ]
 }
