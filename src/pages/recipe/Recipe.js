@@ -19,7 +19,7 @@ export default function Recipe() {
       
       setIsPending(true)
 
-      projectFirestore.collection('recipes').doc(id).get().then((doc) => {
+      const unsub = projectFirestore.collection('recipes').doc(id).onSnapshot((doc) => {
         if (doc.exists) {
 
           setIsPending(false)
@@ -30,7 +30,7 @@ export default function Recipe() {
           setError('Could not find that recipe')
         }
       })
-
+        return () => unsub()
   }, [id])
   
 
@@ -38,7 +38,7 @@ export default function Recipe() {
 
     projectFirestore.collection('recipes').doc(id).update({
 
-      title: 'Somethin completely different'
+      title: 'Something completely different'
     })
   }
   return (
