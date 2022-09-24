@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './Recipe.css'
 import { useParams } from 'react-router-dom'
-import { useFetch } from '../../hooks/useFetch'
 import { useTheme } from '../../hooks/useTheme'
 import { projectFirestore } from '../../firebase/config'
 
