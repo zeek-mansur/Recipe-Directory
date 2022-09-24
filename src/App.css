@@ -2,4 +2,7 @@
   min-height: 100%;
 
 }
+.App.dark {
 
+  background: #333;
+}
