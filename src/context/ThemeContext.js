@@ -6,9 +6,9 @@ export function ThemeProvider ({children}) {
 
     // custom logic 
     return (
-        <ThemeContext value = {{color: 'blue'}}>
+        <ThemeContext.Provider value = {{color: 'blue'}}>
             {children}
-        </ThemeContext> 
+        </ThemeContext.Provider> 
         
     )
 }
